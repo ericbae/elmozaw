@@ -85,5 +85,6 @@ folders:
 
 * Once it is done, we can run **npm run dev** and it will serve the application at available host on your local machine. 
 
+**NOTE : In order for the file uploading and database connection to works, .env file will be required to be provided by me, please contact me if you like to have the file!**
 
 **so after all the setps above your frontend will start talking to BE API, and you can start using the app. Enjoy!**
