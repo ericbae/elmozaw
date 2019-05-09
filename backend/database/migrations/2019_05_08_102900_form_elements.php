@@ -17,7 +17,7 @@ class FormElements extends Migration
             $table->bigIncrements('id');
             $table->string('label')->nullable();
             $table->string('type');
-            $table->text('value');
+            $table->text('value')->nullable();
             $table->integer('form_id');
             $table->timestamps('');
         });

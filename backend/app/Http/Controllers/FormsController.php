@@ -128,8 +128,15 @@ class FormsController extends Controller
         }
         // after successfully uploaded to s3 bucket, GET s3 url
         $s3Url = $s3->url($s3UploadPath);
-        $formElement = new FormElement();
-        $formElement->save(['id' => $formElementId, 'value' => $s3Url]);
+        $formElement = FormElement::find($formElementId);
+        /*
+            For the sake of the time, i will just be storing the s3url which is the public url to access the file.
+            But, i could also do the 'meta' type of json_encoded array fiile related data that involve, filename, filesize, s3 directory, etc.
+            we could even keep another file_store table type and keep the record of our files there. So bascially, we will have blue print of file records in our
+            database as well as on the s3.
+        */
+        $formElement->value = $s3Url;
+        $formElement->save();
 
         return response()->json($s3Url);
     }
