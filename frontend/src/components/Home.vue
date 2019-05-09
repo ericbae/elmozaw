@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <button v-on:click="navigate('BuildForms')" style="margin-bottom:20px; width:100px; height:30px;">ADD FORMS</button>
+    <button v-on:click="navigate('BuildForms')" style="margin-bottom:20px; width:100px; height:30px;">ADD A FORM</button>
     <template v-if="forms.length > 0">
         <table style="width:100%" border="1">
           <tr>

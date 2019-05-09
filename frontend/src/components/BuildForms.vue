@@ -2,28 +2,37 @@
   <div>
     <h1>{{ title }}</h1>
     <template v-if="formId != null">
-       <table>
-          <tr>
-           <td>Form name:</td>
-           <td><input type="text" v-model="formName"></td>
-         </tr>
-         <tr>
-           <td>Label</td>
-           <td><input type="text" v-model="label"></td>
-         </tr>
-         <tr>
-           <td>Type</td>
-           <td>
-              <select class="select-standard"
-                v-model="type">
-                <option value="text">Text Field</option>
-                <option value="text_area">Text Area</option>
-                <option value="file">File</option>
-              </select>
-           </td>
-         </tr>
-       </table>
-       <button v-on:click="addElements()" style="margin-bottom:20px; width:100px; height:30px;">Add Elements</button>
+      <div>
+        <h3>Form name</h3>
+        <input type="text" v-model="formName" class="input-text">
+      </div>
+
+      <br/>
+      <div class="label-line">
+        Label
+      </div>
+
+      <div class="">
+        <input type="text" v-model="label" class="input-text">
+      </div>
+
+      <div class="label-line">
+        Type
+      </div>
+
+      <div class="">
+        <select class="select-standard"
+          v-model="type">
+          <option value="text">Text Field</option>
+          <option value="text_area">Text Area</option>
+          <option value="file">File</option>
+        </select>
+      </div>
+
+
+      <div class="label-line">
+        <button v-on:click="addElements()" style="margin-bottom:20px; width:100px; height:30px;">Add Elements</button>
+      </div>
     </template>
   </div>
 </template>

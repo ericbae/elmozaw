@@ -1,34 +1,38 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
+
     <template v-if="formDetails.length > 0">
-      <table style="width:100%; margin-bottom:50px;">
-        <template v-for="(formDetail, index) in formDetails">
-        <tr>
-          <td>{{formDetail.label}}</td>
-          <td>
-              <template v-if="formDetail.type == 'text'">
-                <input v-model="formDetail.value" type="text" style="width:50%">
-              </template>
-              <template v-else-if="formDetail.type == 'text_area'">
-                <textarea v-model="formDetail.value" style="width:50%"></textarea>
-              </template>
-               <template v-else-if="formDetail.type == 'file'">
-                <input v-on:change="uploadFile($event, index)" type="file" style="width:50%">
-              </template>
-          </td>
-          <td></td>
-          <td>
-            <template v-if="formDetail.value != null && formDetail.type == 'file'">
-                  <img :src="formDetail.value"
-                    style="max-width:150px;"
-                    class="border-8">
-                </template>
-          </td>
-        </tr>
+      <template v-for="(formDetail, index) in formDetails">
+        <div class="label-line">{{formDetail.label}}</div>
+
+        <div>
+          <template v-if="formDetail.type == 'text'">
+            <input v-model="formDetail.value" type="text" class="input-text">
+          </template>
+
+          <template v-else-if="formDetail.type == 'text_area'">
+            <textarea v-model="formDetail.value" class="textarea"></textarea>
+          </template>
+
+          <template v-else-if="formDetail.type == 'file'">
+            <input v-on:change="uploadFile($event, index)" type="file" style="width:50%">
+          </template>
+        </div>
+
+        <div>
+          <template v-if="formDetail.value != null && formDetail.type == 'file'">
+            <img :src="formDetail.value"
+              style="max-width:150px;"
+              class="border-8" />
+          </template>
+        </div>
       </template>
-      </table>
-       <button style="width:100px; height:30px;" v-on:click="submitForm()">Submit</button>
+
+      <div class="label-line">
+        <button style="width:100px; height:30px;" v-on:click="submitForm()">  Submit
+        </button>
+      </div>
     </template>
   </div>
 </template>
@@ -103,7 +107,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-
-</style>
