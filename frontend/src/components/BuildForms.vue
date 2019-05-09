@@ -2,6 +2,21 @@
   <div>
     <h1>{{ title }}</h1>
     <template v-if="formId != null">
+      <template v-if="addedElements.length > 0">
+        <table style="width:100%" border="1">
+          <tr>
+            <th>Label</th>
+            <th>Type</th>
+          </tr>
+          <template v-for="(addedElement, index) in addedElements">
+            <tr>
+              <td>{{addedElement.label}}</td>
+              <td>{{addedElement.type}}</td>
+            </tr>
+          </template>
+        </table>
+    </template>
+    <div style="margin-left:20px;">
       <div>
         <h3>Form name</h3>
         <input type="text" v-model="formName" class="input-text">
@@ -33,6 +48,7 @@
       <div class="label-line">
         <button v-on:click="addElements()" style="margin-bottom:20px; width:100px; height:30px;">Add Elements</button>
       </div>
+    </div>
     </template>
   </div>
 </template>
@@ -46,6 +62,7 @@ export default {
   data () {
     return {
       title: 'Build awesome forms',
+      addedElements: [],
       formName: null,
       formId: null,
       label: null,
@@ -78,6 +95,11 @@ export default {
       }, {
       }).then(response => {
         alert('Successfully added an element, keep adding!');
+        // populate the array with added elements so that we can display to the user
+        this.addedElements.push({
+          'label': this.label,
+          'type': this.type
+        });
         // reset the 'label' and 'type' variable so that user can start from fresh before adding new elements
         this.label = null;
         this.type = null;
@@ -91,5 +113,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

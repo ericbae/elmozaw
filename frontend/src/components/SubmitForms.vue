@@ -3,6 +3,7 @@
     <h1>{{ title }}</h1>
 
     <template v-if="formDetails.length > 0">
+      <div style="margin-left:20px;">
       <template v-for="(formDetail, index) in formDetails">
         <div class="label-line">{{formDetail.label}}</div>
 
@@ -32,6 +33,7 @@
       <div class="label-line">
         <button style="width:100px; height:30px;" v-on:click="submitForm()">  Submit
         </button>
+      </div>
       </div>
     </template>
   </div>
