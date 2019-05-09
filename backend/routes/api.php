@@ -27,7 +27,7 @@ Route::post('forms/{formId}', 'FormsController@edit');
 // end point to upload file for specific element
 Route::post('upload/{formElementId}', 'FormsController@fileUpload');
 // end point to initiate new form without the associated elements yet
-Route::post('forms/build', 'FormsBuilderController@create');
+Route::post('build-forms/build', 'FormsBuilderController@create');
 // end point to append associated elements to the form that is already been created
-Route::post('forms/build/{formId}', 'FormsBuilderController@create');
+Route::post('build-forms/build/{formId}', 'FormsBuilderController@create');
 

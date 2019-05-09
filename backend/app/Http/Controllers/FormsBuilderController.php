@@ -16,7 +16,7 @@ class FormsBuilderController extends Controller
 	 *
 	 *  {POST} /forms
 	 *
-	 * apiSampleRequest http://api.elmozaw-survey.test/api/forms
+	 * apiSampleRequest http://api.elmozaw-survey.test/api/build-forms/build
 	 *
 	 */
     public function create(Request $req, $formId = null) {

@@ -47,7 +47,7 @@ export default {
   created () {
     // once the build form component has been created, MAKE an api call to create the new form in API and use that ID of form
     // to add associated elements to it
-    axios.post('http://api.elmozaw-survey.test/api/forms/build', {}, {
+    axios.post('http://api.elmozaw-survey.test/api/build-forms/build', {}, {
     }).then(response => {
       this.formId = response.data;
 
@@ -61,7 +61,7 @@ export default {
 
     addElements() {
       // make a request to the API to add element to existing form
-      axios.post('http://api.elmozaw-survey.test/api/forms/build/' + this.formId, {
+      axios.post('http://api.elmozaw-survey.test/api/build-forms/build/' + this.formId, {
         // data to be posted to the server
         formName: this.formName,
         label: this.label,
