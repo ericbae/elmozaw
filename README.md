@@ -3,11 +3,11 @@
 This app will allow you to create the dynamic forms and do the submissions of them - just like google survey! : ) 
 
 ## Assumptions & Restrictions
-Authentication is not being available in Backend API. However, the plan is to JWT Auth to handle the authentication and safeguard the APIs. 
+Authentication is not available in Backend API yet. However, the plan is to JWT Auth to handle the authentication and safeguard the APIs. 
 
 ## Getting Started
 
-So this project is broken down into Backend and Frontend. Backend is written in laravel and solely to serve as API for the Frontend which is written Vue JS. Pleaes follow the instructions below to setup backend API and also the Frontend UI. 
+So this project is broken down into Backend and Frontend. Backend is written in laravel(5.8) and solely to serve as API for the Frontend which is written in Vue JS. Pleaes follow the instructions below to setup backend API and also the Frontend UI. 
 
 ### Prerequisites
 * Mac OSX. 
@@ -18,7 +18,7 @@ So this project is broken down into Backend and Frontend. Backend is written in 
 ## Installing & Setting up
 
 ### Setting up Database 
-* I recommend to use **Sequel Pro* 
+* I recommend **Sequel Pro**
 * On the application, create a new connection and we will use **ssh** option to connect to the homestead database server. 
 * Name - any name of your choce 
 * MySQL Host: 192.168.10.10

@@ -94,7 +94,8 @@ class FormsController extends Controller
         $s3 = Storage::disk('s3');
         /*
             If the input type is 'file', we need to upload to s3 bucket or any file systems we like to use
-            i am using s3 here since i am comfortable with it.
+            i am using  AWS s3 file service here since i am comfortable with it. I have created the s3 bucket on AWS for this project and
+            also the IAM user with the customised policy which has the permission to access the s3 bucket i just created.
 
             I decided to design the folder structure in following way assuming i have the user_id who is uploading the file
             'env' -> 'hashed user ID' -> uploaded date -> filename.type
@@ -110,17 +111,18 @@ class FormsController extends Controller
             Since my application doess not have actual active user, i will not be using user ID in the folder structure :
             'env' -> uploaded date -> filename.type
         */
-        if ($element['type'] == 'file') {
-            // build the directory to store to s3
-            $s3directory = env('APP_ENV') . '/' . date("Y/m/d") . '/';
-        }
+
+        // build the directory to store to s3
+        $s3directory = env('APP_ENV') . '/' . strtotime(date("Y/m/d")). '/';
+
         $filename = pathinfo($req->file->getClientOriginalName(), PATHINFO_FILENAME);
         $ext = pathinfo($req->file->getClientOriginalName(), PATHINFO_EXTENSION);
-        $fullFileName  = $filename . $ext;
+        $fullFileName  = $filename . '.' . $ext;
         $s3UploadPath = $s3directory . $fullFileName;
 
-        // upload file to S3 bucket, first param: exact path+filename  to store to S3, third param if it is public or private, for now will keep as public
-        if (!$s3->put($s3UploadPath, file_get_contents($file), $s3access)) {
+        // upload file to S3 bucket, first param: exact path+filename  to store to S3, third param if it is public or private, for now will keep as public so that we can display file
+        // on client side. in reality, files should be private and only individual who are authenticated should have accewss to ti.
+        if (!$s3->put($s3UploadPath, file_get_contents($req->file), 'public')) {
             // something went wrong while uploading file to s3
             return response()->json([
                 'error' => 'unable to upload file to s3.'

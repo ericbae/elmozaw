@@ -17,6 +17,14 @@
                 <input v-on:change="uploadFile($event, index)" type="file" style="width:50%">
               </template>
           </td>
+          <td></td>
+          <td>
+            <template v-if="formDetail.value != null && formDetail.type == 'file'">
+                  <img :src="formDetail.value"
+                    style="max-width:150px;"
+                    class="border-8">
+                </template>
+          </td>
         </tr>
       </template>
       </table>
@@ -83,7 +91,8 @@ export default {
       // whenever file is uploaded, we will trigger api call to upload it to the server
       axios.post('http://api.elmozaw-survey.test/api/upload/' + this.formDetails[index]['id'], formData, {
       }).then(response => {
-
+          // return data is the s3 url. so we will assign it to the formDetails var so that we can update component template
+          this.formDetails[index]['value'] = response.data;
 
       }).catch(e => {
         // should catch the error here and display graceful message to user
